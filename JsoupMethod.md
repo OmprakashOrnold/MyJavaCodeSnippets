@@ -226,7 +226,7 @@ public class SSLExceptionSolution {
 	       
 ```
 
-### Extract Data From Particular Tags and with more conditions
+### Extract Data From Particular Tags And With More Conditions
 
 ```java
             Elements span_elements = document.select("span");
@@ -244,6 +244,26 @@ public class SSLExceptionSolution {
 				}
 			}
 		}
+	       
+```
+
+
+### Extract All Href Link From Any Website
+
+```java          
+	   Elements links = document.getElementsByTag("a"); 
+	   if (links != null && links.size() > 0) {
+		for (Element link: links) {
+			try {
+				String linkHref = link.attr("href");
+				  //logic starts here
+				
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+	   )
 	       
 ```
 
