@@ -100,7 +100,7 @@ public class JsoupStarterTemplate{
 
 
 ```
-### SSLException Solution 
+### JSOUP SSLException Solution 
 
 ```java
 
@@ -188,5 +188,26 @@ public class SSLExceptionSolution {
 		}
 
 ```
+
+### Extract Data From CSS Query
+
+```java
+             Elements itemTitleElement = documnet.select("meta[itemprop='name']");
+	     if (itemTitleElement != null && !itemTitleElement.isEmpty()) {
+		for (Element element : itemTitleElement) 
+		{
+	  	      try {
+				title=element.attr("content");	
+				//logic starts here
+				
+				
+		           } catch (Exception e) {
+			      e.printStackTrace();
+		    }	
+		}         
+	       
+```
+
+
 
 
