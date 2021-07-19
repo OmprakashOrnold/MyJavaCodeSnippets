@@ -72,6 +72,28 @@
 		jse.executeScript("window.scrollBy(0,200)");
 	}
 ```
+
+ ### To Login to linkedin website
+```java
+public static WebDriver loginLinkedinWebsite(WebDriver driver) 
+	{
+		String loginUrl = "https://www.linkedin.com/login";				
+		try
+		{
+			driver.get(loginUrl);
+			driver.findElement(By.cssSelector("input[name='session_key']")).sendKeys("xyz@gmail.com");	
+			driver.findElement(By.cssSelector("input[name='session_password']")).sendKeys("xyz");					
+			driver.findElement(By.cssSelector("button[aria-label='Sign in']")).click();	
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);   
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return driver;
+	}
+```
+
  
  
  
