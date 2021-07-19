@@ -1,21 +1,58 @@
 # My Java Code Snippets
-# Jsoup Snippets
+### Jsoup Advance Starter Template
 
-```
+```java
+	
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import com.mycodes.urlcheck.SSLExceptionSolution;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+
+public class JsoupStarterTemplate{
+
+	public static void main(String[] args) {
+
+	}
+
+
 	public static String getURLResponse(String company_url) {
 		Document document=null;;
 		try {
 
 			SSLExceptionSolution.enableSSLSocket();
-			document = Jsoup.connect(company_url).followRedirects(true).userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:46.0) Gecko/20100101 Firefox/46.0").ignoreHttpErrors(true)
+			document = Jsoup.connect(company_url).followRedirects(true).userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:46.0)       Gecko/20100101 Firefox/46.0").ignoreHttpErrors(true)
 					.timeout(20000).get();
 
 			if (document == null) {
 				OkHttpClient client = new OkHttpClient();
 				Request request = new Request.Builder().url(company_url).get()
 						.addHeader("cache-control", "no-cache").build();
-				String jsonResponse = client.newCall(request).execute().body().string();
-				document = Jsoup.parse(jsonResponse);
+				String response = client.newCall(request).execute().body().string();
+				document = Jsoup.parse(response);
 			}
 
 			if (document == null) {
@@ -42,7 +79,7 @@
 		return document.toString();
 	}
 
-	private static SSLSocketFactory createSslSocketFactory() throws Exception {
+	public static SSLSocketFactory createSslSocketFactory() throws Exception {
 		TrustManager[] byPassTrustManagers = new TrustManager[] { new X509TrustManager() {
 			public X509Certificate[] getAcceptedIssuers() {
 				return new X509Certificate[0];
@@ -58,6 +95,8 @@
 		sslContext.init(null, byPassTrustManagers, new SecureRandom());
 		return sslContext.getSocketFactory();
 	}
+
+}
 
 
 ```
