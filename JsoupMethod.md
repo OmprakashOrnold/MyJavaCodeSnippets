@@ -192,10 +192,9 @@ public class SSLExceptionSolution {
 ### Extract Data From CSS Query
 
 ```java
-             Elements itemTitleElement = documnet.select("meta[itemprop='name']");
-	     if (itemTitleElement != null && !itemTitleElement.isEmpty()) {
-		for (Element element : itemTitleElement) 
-		{
+             Elements name_elments = documnet.select("meta[itemprop='name']");
+	     if (name_elments != null && name_elments.size() > 0) {
+		for (Element element : name_elments) {
 	  	      try {
 				title=element.attr("content");	
 				//logic starts here
@@ -212,8 +211,9 @@ public class SSLExceptionSolution {
 ### Extract Data From Particular Tag
 
 ```java
-             Elements liTagElements = newElement.getElementsByTag("li");
-		for (Element element : liTagElements){
+             Elements list_elements = newElement.getElementsByTag("li");
+	     if (list_elements != null && list_elements.size() > 0) {
+		for (Element element : list_elements){
 			try{
 			    //logic starts here
 			    
@@ -221,7 +221,29 @@ public class SSLExceptionSolution {
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
-		}  
+		}  		
+	     }
+	       
+```
+
+### Extract Data From Particular Tags and with more conditions
+
+```java
+            Elements span_elements = document.select("span");
+		if (span_elements != null && span_elements.size() > 0) {
+			for (Element element : span_elements) {
+				try {
+					if (element.hasAttr("class") && element.attr("class").equals("t-20 t-black")) {
+						employeecount = element.text().replace("employees", "").replace(",", "").trim();
+						  //logic starts here
+						  
+						
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	       
 ```
 
