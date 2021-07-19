@@ -176,5 +176,17 @@ public class SSLExceptionSolution {
 
 
 ```
+### Jsoup To Connect Url Step
+
+```java
+                Document document=null;
+		String response=getURLResponse("https://www.google.com/");
+		if(response!=null)
+		{
+			document=Jsoup.parse(response);
+		        ///logic starts here
+		}
+
+```
 
 
