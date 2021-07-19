@@ -209,5 +209,22 @@ public class SSLExceptionSolution {
 ```
 
 
+### Extract Data From Particular Tag
+
+```java
+             Elements liTagElements = newElement.getElementsByTag("li");
+		for (Element element : liTagElements){
+			try{
+			    //logic starts here
+			    
+			    
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}  
+	       
+```
+
+
 
 
