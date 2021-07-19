@@ -131,6 +131,6 @@ public static String  getRedirectUrl(String domain) {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return returnedUrl;
+		return returnedUrl; 
 	}
 ```
