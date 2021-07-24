@@ -94,6 +94,21 @@ public static WebDriver loginLinkedinWebsite(WebDriver driver)
 	}
 ```
 
+ ### To Get Specific Page
+```java
+	public static  WebDriver getSpecificPage(WebDriver driver,String url)
+	{	
+		try{
+			driver.navigate().to(url);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return driver;
+	}
+	
+```
+
  
  
  
