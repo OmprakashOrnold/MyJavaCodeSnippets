@@ -109,6 +109,91 @@ public static WebDriver loginLinkedinWebsite(WebDriver driver)
 	
 ```
 
+ ### Example Download Webpage Using Selenium 
+```java
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class ZoomPageDownload {
+	
+	public static void main(String[] args) {
+		
+		WebDriver specificPage=null;
+		WebDriver chromeDriver = null;
+		chromeDriver=setChromeDriver();
+		if(chromeDriver!=null)
+		{
+			String url=" https://www.zoominfo.com/c/woundtech/353963487";
+			specificPage=getSpecificPage(chromeDriver,url);
+			String sourceCode=specificPage.getPageSource();
+			
+			Writer writer;
+			try {
+				writer = new FileWriter(
+						"C:\\om\\praksh.html");
+				BufferedWriter bufferedWriter = new BufferedWriter(writer);
+				bufferedWriter.write(sourceCode);
+				bufferedWriter.close();
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+	}
+	
+	public static  WebDriver setChromeDriver() 
+	{	
+		WebDriver driver = null;
+		ChromeOptions options =null;
+		try
+		{
+			options = new ChromeOptions();
+			//options.addArguments("--headless");			
+			options.addArguments("--disable-gpu");
+			options.addArguments("--allow-insecure-localhost");
+			options.addArguments("--allow-running-insecure-content");
+			options.addArguments("--ignore-certificate-errors");
+			options.addArguments("--no-sandbox");
+			options.addArguments("--start-maximized");
+         	options.addArguments("--window-size=2000,2000");
+			options.setCapability("acceptSslCerts", true);
+			options.setCapability("acceptInsecureCerts", true);	
+			System.setProperty("webdriver.chrome.driver","C:\\Users\\OmPrakashPeddamadtha\\Downloads\\chromedriver_win32\\chromedriver.exe");
+			driver = new ChromeDriver(options);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return driver;
+	}
+	
+	public static  WebDriver getSpecificPage(WebDriver driver,String url)
+	{	
+		try
+		{
+			driver.navigate().to(url);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return driver;
+	}
+
+
+}
+
+	
+```
+
  
  
  
