@@ -1,7 +1,7 @@
 # MyJavaCodeSnippets
 # Url Response Using URL Connection
 
-```
+```java
 public static String  getResponseURLConnection(String url) {
 		StringBuilder result = new StringBuilder();
 		String line;
