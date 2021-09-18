@@ -2,13 +2,10 @@
 # Spring JDBC Main Method
 
 ```java
-      package com.spring.jdbc;
-
+package com.spring.jdbc;
 import java.util.List;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
 import com.spring.jdbc.dao.StudentDAO;
 import com.spring.jdbc.entities.Student;
 
@@ -64,9 +61,7 @@ public class App {
 # Spring JDBC Entity 
 
 ```java
-
 package com.spring.jdbc.entities;
-
 public class Student {
 
 	private Integer id;
@@ -112,11 +107,8 @@ public class Student {
 
 ```java
 package com.spring.jdbc.dao;
-
 import java.util.List;
-
 import com.spring.jdbc.entities.Student;
-
 public interface StudentDAO {
 	
 	public int insert(Student student);
@@ -139,13 +131,10 @@ public interface StudentDAO {
 ```java
 
 package com.spring.jdbc.dao.impl;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-
 import com.spring.jdbc.dao.StudentDAO;
 import com.spring.jdbc.entities.Student;
 
@@ -214,7 +203,6 @@ public class StudentDAOImpl implements StudentDAO {
 
 ```java
 package com.spring.jdbc.dao.impl;
-
 import java.sql.ResultSet;
 import org.springframework.jdbc.core.RowMapper;
 import com.spring.jdbc.entities.Student;
@@ -280,15 +268,12 @@ public class RowMapperImpl implements RowMapper<Student> {
 
 ```java
 package com.spring.jdbc;
-
 import javax.sql.DataSource;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-
 import com.spring.jdbc.dao.StudentDAO;
 import com.spring.jdbc.dao.impl.StudentDAOImpl;
 
