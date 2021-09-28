@@ -353,7 +353,7 @@ public class StudentDAOImpl implements StudentDAO{
 
 ```
 
-# Spring ORM JavaConfig filw
+# Spring ORM JavaConfig Class
 ```java
 
 package com.spring.orm;
