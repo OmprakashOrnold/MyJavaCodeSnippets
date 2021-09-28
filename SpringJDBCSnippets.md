@@ -1,4 +1,3 @@
-# MyJavaCodeSnippets
 # Spring JDBC Main Method
 
 ```java
