@@ -1,4 +1,4 @@
-# Spring ORM App Main
+# Spring ORM  Main Method
 
 ```java
 package com.spring.orm;
