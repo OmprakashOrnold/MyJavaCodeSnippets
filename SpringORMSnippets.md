@@ -353,6 +353,83 @@ public class StudentDAOImpl implements StudentDAO{
 
 ```
 
+# Spring ORM JavaConfig filw
+```java
+
+package com.spring.orm;
+
+import java.io.IOException;
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
+import org.hibernate.SessionFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.spring.orm.dao.impl.StudentDAOImpl;
+
+@Configuration
+@ComponentScan(basePackages ="com.spring.orm.dao")
+@EnableTransactionManagement
+public class JavaConfig {
+	
+
+	@Bean
+	public HibernateTemplate hibernateTemplate() {
+		return new HibernateTemplate(sessionFactory());
+	}
+
+	@Bean
+	public SessionFactory sessionFactory() {
+		LocalSessionFactoryBean lsfb = new LocalSessionFactoryBean();
+		lsfb.setDataSource(getDataSource());
+		lsfb.setPackagesToScan("com.spring.orm.entities");
+		lsfb.setHibernateProperties(hibernateProperties());
+		try {
+			lsfb.afterPropertiesSet();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return lsfb.getObject();
+	}
+
+	@Bean("ds")
+	public DataSource getDataSource(){		
+		DriverManagerDataSource driver=new DriverManagerDataSource();
+		driver.setDriverClassName("com.mysql.cj.jdbc.Driver");
+		driver.setUrl("jdbc:mysql://localhost:3306/springjdbc");
+		driver.setUsername("root");
+		driver.setPassword("12345");
+		return driver;	
+	}
+
+	private Properties hibernateProperties() {
+		Properties properties = new Properties();
+		
+		properties.put("hibernate.dialect","org.hibernate.dialect.MySQL8Dialect" );
+		properties.put("hibernate.hbm2ddl.auto", "update" );
+		properties.put("hibernate.show_sql", "true");
+		return properties;        
+	}	
+
+	
+	@Bean("studentDao")
+	public StudentDAOImpl getStudentDao(){		
+		return new StudentDAOImpl(hibernateTemplate() );
+	}
+
+}
+
+
+```
+
+
 # Spring ORM pom.xml
 
 ```xml
