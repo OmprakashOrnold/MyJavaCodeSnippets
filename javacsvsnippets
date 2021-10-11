@@ -1,8 +1,8 @@
 # Console Output into excel and text
 
+# maven dependecy
 
 ```xml
-    <!-- https://mvnrepository.com/artifact/net.sourceforge.javacsv/javacsv -->
 		<dependency>
 			<groupId>net.sourceforge.javacsv</groupId>
 			<artifactId>javacsv</artifactId>
@@ -10,8 +10,10 @@
 		</dependency>
     
   ```
+  
+ # Console out to csv
    
-   ```java
+  ```java
    		      	// before we open the file check to see if it already exists
 							boolean alreadyExists = new File(outputFile).exists();
 
