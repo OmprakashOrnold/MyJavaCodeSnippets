@@ -143,3 +143,71 @@ public static String  getRedirectUrl(String domain) {
 		return returnedUrl; 
 	}
 ```
+
+### Example To Read a JSON many files
+
+```java
+
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+public class ExtractCategories {
+
+	public static void main(String[] args) {
+
+
+		String jsonData=null;
+
+		File folder = new File("C:\\Users\\OmPrakashPeddamadtha\\Downloads\\g2_category_pages");
+		File[] listOfFiles = folder.listFiles();
+		for (File file : listOfFiles) {
+			if (file.isFile()) {
+				try {
+					String fullFileName = "C:\\Users\\OmPrakashPeddamadtha\\Downloads\\g2_category_pages\\"+file.getName();
+					jsonData=readFileAsString(fullFileName);
+
+					if (jsonData != null) {
+						
+						
+					}
+
+
+				}catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	public static boolean isValid(JSONObject jsonObject, String propertyName) {
+		boolean valid = false;
+		try {
+			if (propertyName != null) {
+				if (jsonObject.has(propertyName) && !jsonObject.get(propertyName).toString().equalsIgnoreCase("null")
+						&& !jsonObject.get(propertyName).toString().equalsIgnoreCase(""))
+					valid = true;
+			}
+		} catch (Exception ex) {
+			System.out.println(ex.toString());
+			valid = false;
+		}
+		return valid;
+	}
+
+
+
+
+	public static String readFileAsString(String fileName)throws Exception 
+	{ 
+		String data = ""; 
+		data = new String(Files.readAllBytes(Paths.get(fileName))); 
+		return data; 
+	}
+}
+
+```
