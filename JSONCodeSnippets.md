@@ -87,6 +87,15 @@ if (initialStateJsonObject != null && initialStateJsonObject.has("teamName")) {
 	if (arraySize > 0) {
 		for (int arrayIndex = 0; arrayIndex < arraySize; arrayIndex++) {
 			try {
+			JSONObject categoryFeaturesObject = categoryFeaturesArray.getJSONObject(arrayIndex1);
+			
+			if (categoryFeaturesObject != null&& categoryFeaturesObject.has("name")) {
+												if (isValid(categoryFeaturesObject, "name")) 
+												{																
+													String namess= categoryFeaturesObject.get("name").toString();
+													list.add(namess);															
+												}
+											}
 
                            } catch(Exception e) {
 				e.printStackTrace();
