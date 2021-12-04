@@ -8,6 +8,7 @@ Create a Spring Boot starter project using any IDE like STS, Netbeans, Intellij 
 ### Step#2: Update application.properties or application.yml
  The next step to update either application.properties or application.yml whichever is applicable. Here we need to provide datasource details like DB driver class name, DB url, DB username and DB password. Additionally, we can provide other configuration properties such as dialect, ddl-auto, show-sql etc. However, as we are talking about a basic MVC application, our purpose to update this file is just to connect through the database.
 
+```xml
                        server.port=8888
                        spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
                        spring.datasource.url=jdbc:mysql://localhost:3306/invoice_mvc
@@ -17,6 +18,7 @@ Create a Spring Boot starter project using any IDE like STS, Netbeans, Intellij 
                        spring.jpa.show-sql=true
                        spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
                        spring.jpa.hibernate.ddl-auto=update
+```
 
 ### Step#3: Create Entity (model) class
   
