@@ -113,7 +113,7 @@ It also depends on what the developer is using in the model attribute annotation
 Answer: The @PathVariable is an annotation that is used as a parameter in the handler method for extracting the value of the URI template.
 
 Example:
-```jvaa
+```java
 @RequestMapping("/Login/{Lid}")
 public String handleRequest(@PathVariable("Lid") String Login, Model map)
   {
@@ -228,7 +228,7 @@ There are mainly two ways to achieve this and those ways are mentioned below:
         <servlet-name>Spring</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-```xml
+```
 (ii) The developer can import files into the existing configuration.
 ```xml
 <beans>
@@ -328,22 +328,20 @@ Answer: AOP is an important part of Spring MVC Architecture. AOP is used for cro
 
 There are many parts of Aspect Oriented Programming. These are mentioned below:
 
- Aspect: Aspect is responsible for cross-cutting concerns like transaction management etc.
- Advice: It is basically an action and method that are executed and is also used for a specified join point.
- Pointcut: It is responsible for the execution of advice in terms of regular expressions.
- Joint Point: It is a point in the application for processes like exception handling, execution of the method, variable values change, etc.
- Advice Arguments: These arguments are used for passing of methods.
+- Aspect: Aspect is responsible for cross-cutting concerns like transaction management etc.
+- Advice: It is basically an action and method that are executed and is also used for a specified join point.
+- Pointcut: It is responsible for the execution of advice in terms of regular expressions.
+- Joint Point: It is a point in the application for processes like exception handling, execution of the method, variable values change, etc.
+- Advice Arguments: These arguments are used for passing of methods.
 
-Conclusion
+### Conclusion
 
-Hope, you would have got a complete overview of Spring MVC architecture from this article.
+- Here, we have covered the complete end to end flow of Spring MVC flow, Why we need Spring MVC? What are the different modules in MVC architecture? Features of Spring MVC and dispatcher servlet, the concept of the front controller, Listeners and its function, different types of annotation like @Autowired, @Controller, @RequestBody, etc.
 
-Here, we have covered the complete end to end flow of Spring MVC flow, Why we need Spring MVC? What are the different modules in MVC architecture? Features of Spring MVC and dispatcher servlet, the concept of the front controller, Listeners and its function, different types of annotation like @Autowired, @Controller, @RequestBody, etc.
+- We also learned more about View Resolver concept, AOP process and different types of the controller along with its uses. Localization and interceptors, different architecture of Spring framework and the concept of the binding result along with its uses.
 
-We also learned more about View Resolver concept, AOP process and different types of the controller along with its uses. Localization and interceptors, different architecture of Spring framework and the concept of the binding result along with its uses.
+- We came to know what is a Spring container and its usage in Spring MVC? Usage of configurations files in Spring MVC, Path variable responsibilities and importance. etc Almost all the important and most expected Spring MVC interview questions are explained in this article.
 
-We came to know what is a Spring container and its usage in Spring MVC? Usage of configurations files in Spring MVC, Path variable responsibilities and importance. etc Almost all the important and most expected Spring MVC interview questions are explained in this article.
-
-However, it is always advisable to explain with code examples in the real-time application to satisfy the interviewer’s expectation. All the codes required for each and every concept are covered here for your easy understanding.
+- However, it is always advisable to explain with code examples in the real-time application to satisfy the interviewer’s expectation. All the codes required for each and every concept are covered here for your easy understanding.
 
 We wish you all the best!
