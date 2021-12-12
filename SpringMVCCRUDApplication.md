@@ -11,11 +11,13 @@
  ### 7.   JPA Entity - Customer.java
  ### 8.   Spring MVC Controller Class - CustomerController.java
  ### 9.   Service Layer - CustomerService.java and CustomerServiceImpl.java
- ### 10.   DAO Layer - CustomerDAO.java and CustomerDAOImpl.java 
- ### 11.    JSP Views - customer-form.jsp and list-customers.jsp
-    Serve Static Resources - CSS and JS
-    Build and Run an application
+ ### 10.  DAO Layer - CustomerDAO.java and CustomerDAOImpl.java 
+ ### 11.  JSP Views - customer-form.jsp and list-customers.jspServe Static Resources - CSS and JS
+ ### 12.  Build and Run an application
 
- 
+ ## 1.  Create a Maven Web Application
+        Let's create a Maven-based web application either using a command line or from Eclipse IDE.
+        Once you created a maven web application, refer below pom.xml file jar dependencies.
+   
 
 
