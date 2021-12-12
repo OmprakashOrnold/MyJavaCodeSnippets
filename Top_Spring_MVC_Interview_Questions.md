@@ -139,9 +139,8 @@ AbstractCachingViewResolver, XmlViewResolver, ResourceBundleViewResolver, UrlBas
 
 ### Q #13) Explain the working principle of the Spring MVC Framework.
 
-
-
 The below diagram will help in understanding the flow:
+<img src="https://www.softwaretestinghelp.com/wp-content/qa/uploads/2019/02/6.jpg" alt="MarineGEO circle logo" style="height: 100px; width:100px;"/>
 
 working principle of the Spring MVC Framework
 
