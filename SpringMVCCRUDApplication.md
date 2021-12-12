@@ -589,3 +589,158 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 }
 ```
+
+## 11 JSP Views - customer-form.jsp and list-customers.jsp
+### customer-form.jsp
+
+```jsp
+
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Spring MVC 5 - form handling | Java Guides</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-offset-2 col-md-7">
+			<h2 class="text-center">Spring MVC Application</h2>
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<div class="panel-title"><strong>Add Customer</strong></div>
+				</div>
+				<div class="panel-body">
+					<form:form action="saveCustomer" cssClass="form-horizontal"
+						method="post" modelAttribute="customer">
+
+						<!-- need to associate this data with customer id -->
+						<form:hidden path="id" />
+
+						<div class="form-group">
+							<label for="firstname" class="col-md-3 control-label">First
+								Name</label>
+							<div class="col-md-9">
+								<form:input path="firstName" cssClass="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="lastname" class="col-md-3 control-label">Last
+								Name</label>
+							<div class="col-md-9">
+								<form:input path="lastName" cssClass="form-control" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="email" class="col-md-3 control-label">Email</label>
+							<div class="col-md-9">
+								<form:input path="email" cssClass="form-control" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<!-- Button -->
+							<div class="col-md-offset-3 col-md-9">
+								<form:button cssClass="btn btn-primary">Submit</form:button>
+							</div>
+						</div>
+
+					</form:form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+	
+```
+### list-customers.jsp
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html>
+<head><%@ page isELIgnored="false"%>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-offset-1 col-md-10">
+			<h2>List oF Customers</h2>
+			<hr />
+			<input type="button" value="Add Customer"
+				onclick="window.location.href='showForm'; return false;"
+				class="btn btn-primary" /> <br /> <br />
+				
+				
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<div class="panel-title">Customer List</div>
+				</div>
+				<div class="panel-body">
+					<table class="table table-striped table-bordered">
+						<tr>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Email</th>
+							<th>Action</th>
+						</tr>
+
+						<!-- loop over and print our customers -->
+						<c:forEach var="tempCustomer" items="${customers}">
+
+							<!-- construct an "update" link with customer id -->
+							<c:url var="updateLink" value="/customer/updateForm">
+								<c:param name="customerId" value="${tempCustomer.id}" />
+							</c:url>
+
+							<!-- construct an "delete" link with customer id -->
+							<c:url var="deleteLink" value="/customer/delete">
+								<c:param name="customerId" value="${tempCustomer.id}" />
+							</c:url>
+
+							<tr>
+								<td>${tempCustomer.firstName}</td>
+								<td>${tempCustomer.lastName}</td>
+								<td>${tempCustomer.email}</td>
+
+								<td>
+									<!-- display the update link --> <a href="${updateLink}">Update</a>
+									| <a href="${deleteLink}"
+									onclick="if (!(confirm('Are you sure you want to delete this customer?'))) return false">Delete</a>
+								</td>
+
+							</tr>
+
+						</c:forEach>
+
+					</table>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>
+```
