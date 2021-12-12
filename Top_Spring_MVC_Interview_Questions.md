@@ -19,11 +19,11 @@ Answer:
 
 Core features of Spring MVC are:
 
-    It is capable of effectively configuring the framework and classes as beans. It also divides the functional roles and responsibilities separately.
-    It allows the definition of an unlimited controller method which makes the application highly adjustable and flexible.
-    It provides good customization for handler mapping, binding, view resolution, and validations.
-    It helps to transfer the model by using a map. It also provides supports for velocity, JSTL, JSP, and the user can customize locale and theme resolution.
-    Spring has its own tag library which makes it more flexible and supports data binding, themes, beans having life cycle up to HTTP request.
+It is capable of effectively configuring the framework and classes as beans. It also divides the functional roles and responsibilities separately.
+It allows the definition of an unlimited controller method which makes the application highly adjustable and flexible.
+It provides good customization for handler mapping, binding, view resolution, and validations.
+It helps to transfer the model by using a map. It also provides supports for velocity, JSTL, JSP, and the user can customize locale and theme resolution.
+Spring has its own tag library which makes it more flexible and supports data binding, themes, beans having life cycle up to HTTP request.
 
 ### Q #4) Explain the concept of the Dispatcher Servlet.
 
@@ -33,7 +33,8 @@ Once the dispatcher servlet receives a request, it forwards it to handler mappin
 
 Again, the servlet sends the request to the view resolver for getting the required view and then it sends the response to the client browser.
 
-Code Example to show dispatcher servlet usage:
+Code Example to show dispatcher servlet usage.:
+```xml
 <web-app>
  
 <display-name>Software Testing Help Web Application</display-name>
@@ -51,11 +52,13 @@ Code Example to show dispatcher servlet usage:
  
 </web-app>
 
+```
 ### Q #5) What is the use of ContextLoaderListner in Spring MVC?
 
 Answer: It is used to read and parse the Spring configuration file and process the loading of beans in that configuration file.
 
 Code Example:
+```xml
 <servlet>
     <servlet-name>Spring</servlet-name>
     <servlet-class>
@@ -69,7 +72,7 @@ Code Example:
       
     <load-on-startup>1</load-on-startup>
 </servlet>
-
+```
 ### Q #6) Explain the front controller class of Spring MVC.
 
 Answer: Front Controller is responsible to handle the entire incoming request of an application. In Spring MVC, dispatcher servlet acts as a front controller and handles the entire incoming requests.
@@ -79,6 +82,7 @@ Answer: Front Controller is responsible to handle the entire incoming request of
 Answer: The @Autowired annotation is responsible for injecting a bean by its type along with the fields and methods. Thereby helping the Spring framework in resolving and injection of collaborating beans into our bean.
 
 Example:
+```java
 package com.SoftwareTestingHelp;
 import org.Springframework.beans.factory.annotation.Autowired;
  
@@ -96,6 +100,7 @@ public void spellCheck() {
   sp.checkSpelling();
  }
 }
+```
 
 ### Q #8) What is the function of Model Attribute annotation?
 
@@ -108,20 +113,22 @@ It also depends on what the developer is using in the model attribute annotation
 Answer: The @PathVariable is an annotation that is used as a parameter in the handler method for extracting the value of the URI template.
 
 Example:
+```jvaa
 @RequestMapping("/Login/{Lid}")
 public String handleRequest(@PathVariable("Lid") String Login, Model map)
   {
 }
+```
 
-Q #10) What is the function of annotation @RequestBody?
+### Q #10) What is the function of annotation @RequestBody?
 
 Answer: The @RequestBody annotation is responsible for binding the HTTP body request to a domain object. The incoming HTTP request is automatically de-serialized to the Java object by Spring with the help of the HTTP message converters.
 
-Q #11) What is the function of annotation @ResponseBody?
+### Q #11) What is the function of annotation @ResponseBody?
 
 Answer: When the @ResponseBody annotation is used in the MVC controller, it indicates that the developer needs to write a return type of declared method directly to the HTTP response body. Here, invoking of the model is not required and the view name is not interpreted by Spring.
 
-Q #12) Why do we need View Resolver in Spring MVC and what is an internal view resolver in Spring?
+### Q #12) Why do we need View Resolver in Spring MVC and what is an internal view resolver in Spring?
 
 Answer: View Resolver is responsible for rendering of models in the web browser. It does not require any specific view technologies like JSP, XML, and Velocity, etc.
 
@@ -131,7 +138,7 @@ There are some important view resolver’s in Spring MVC as mentioned below:
 
 AbstractCachingViewResolver, XmlViewResolver, ResourceBundleViewResolver, UrlBasedViewResolver, InternalResourceViewResolver, FreeMarkerViewResolver, ContentNegotiatingViewResolver etc.
 
-Q #13) Explain the working principle of the Spring MVC Framework.
+### Q #13) Explain the working principle of the Spring MVC Framework.
 
 Answer:
 
@@ -149,13 +156,14 @@ Now, the request is sent to the view resolver by a servlet to get the presentati
 
 Lastly, the Dispatcher Servlet passes the model to the presentation page and the same is rendered to a client browser.
 
-Q #14) What is the purpose of using BindingResults?
+### Q #14) What is the purpose of using BindingResults?
 
 Answer: BindingResults is one of the interfaces in Spring that comes under the package org.Springframework.validation and is used to represent the binding results.
 
 It plays a handy role in detecting errors from the submitted forms. It has a simple and easy invoking process. The developer has to keep in mind to put the binding result as a parameter just after the object validating.
 
 Syntax:
+```java
 @PostMapping("/client")
 public String submitpage(@Valid NewUserPage newUserPage,
   BindingResult result, Model model) {
@@ -165,10 +173,10 @@ public String submitpage(@Valid NewUserPage newUserPage,
     model.addAttribute("message", "Valid Page");
     return "uHome";
 }
-
+```
 Here, the Spring framework will understand by reading the @Valid annotation and will try to find its validator.
 
-Q #15) Explain the Model 1 and Model 2 architecture of Spring Framework.
+### Q #15) Explain the Model 1 and Model 2 architecture of Spring Framework.
 
 Answer: These are the two important design models for developing web applications.
 
@@ -188,19 +196,20 @@ Model 2 architeture of Spring
 
 This model is robust, reliable, and avoids duplicity. It is good for building large and complex applications.
 
-Q #16) Explain the function of the Spring MVC interceptor along with its usage.
+### Q #16) Explain the function of the Spring MVC interceptor along with its usage.
 
 Answer: Interceptors play a handy role in Spring MVC. They are used to intercept the request from the client, process the request at different times like before handling the request, after handling the request and after completion of the presentation part i.e. view page, etc.
 
 It is also used from cross-cutting concerns and reduces the code handler repetition like a modification of global parameters in the model later, logging, etc.
 
-Q #17) Is it allowed to use multiple Spring configuration files in Spring MVC?
+### Q #17) Is it allowed to use multiple Spring configuration files in Spring MVC?
 
 Answer: Yes, Spring allows to have multiple configuration files in one application.
 
 There are mainly two ways to achieve this and those ways are mentioned below:
 
 (i) The Developer has to declare all the files in the web.xml using the parameter:
+```xml
 <servlet>
         <servlet-name>Spring</servlet-name>
         <servlet-class>
@@ -219,12 +228,13 @@ There are mainly two ways to achieve this and those ways are mentioned below:
         <servlet-name>Spring</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-
+```xml
 (ii) The developer can import files into the existing configuration.
+```xml
 <beans>
     <import resource="Spring-dao-hibernate.xml"/>
 </beans>
-
+```
 ### Q #18) Explain the functions of the following annotations: @Component, @Controller, @Repository, @Service.
 
 Answer: These are the important annotations in Spring MVC. Let’s take a look at them.
@@ -232,11 +242,12 @@ Answer: These are the important annotations in Spring MVC. Let’s take a look a
 @Component: This annotation is responsible for converting a java class to the bean so that it can be recognized by Spring and used in the application context.
 
 Syntax:
-
+```java
 @Component
 public class StudentDAOImpl implements StudentDAO {
     ...
 }
+```
 
 @Repository: This annotation has the same use as that of @Component, but additionally it also considers the unchecked exceptions that can be used in Spring.
 
@@ -259,9 +270,11 @@ Answer: Spring MVC is configured with LocaleResolver for supporting both interna
 SessionLocaleResolver – It takes the help of the already defined attributes in the user session for resolving locales.
 
 Syntax:
+```xml
 <bean id="localeResolver"class="org.Springframework.web.servlet.i18n.SessionLocaleResolver">
     <property name="defaultLocale" value="en" />
 </bean>
+```
 
 LocaleChangeInterceptor – It is useful when there is a parameter present in the incoming request.
 
@@ -315,11 +328,11 @@ Answer: AOP is an important part of Spring MVC Architecture. AOP is used for cro
 
 There are many parts of Aspect Oriented Programming. These are mentioned below:
 
-    Aspect: Aspect is responsible for cross-cutting concerns like transaction management etc.
-    Advice: It is basically an action and method that are executed and is also used for a specified join point.
-    Pointcut: It is responsible for the execution of advice in terms of regular expressions.
-    Joint Point: It is a point in the application for processes like exception handling, execution of the method, variable values change, etc.
-    Advice Arguments: These arguments are used for passing of methods.
+ Aspect: Aspect is responsible for cross-cutting concerns like transaction management etc.
+ Advice: It is basically an action and method that are executed and is also used for a specified join point.
+ Pointcut: It is responsible for the execution of advice in terms of regular expressions.
+ Joint Point: It is a point in the application for processes like exception handling, execution of the method, variable values change, etc.
+ Advice Arguments: These arguments are used for passing of methods.
 
 Conclusion
 
