@@ -28,7 +28,7 @@ Spring has its own tag library which makes it more flexible and supports data bi
 
  Dispatcher Servlet is the main central servlet that handles all the incoming HTTP Request and Responses. It has integration with Spring IOC, and thus it allows to use all the features of Spring.
 
-Once the dispatcher servlet receives a request, it forwards it to handler mapping for getting an appropriate controller, and now the controller will call the correct service method and again it will send it back to the dispatcher servlet.
+Once the dispatcher servlet receives a request, it forwards it to handler mapping for getting an appropriate controller, and now the controller will call the correct service method and again it will send it back to the dispatcher servlet. 
 
 Again, the servlet sends the request to the view resolver for getting the required view and then it sends the response to the client browser.
 
