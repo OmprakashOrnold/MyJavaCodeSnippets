@@ -1,6 +1,6 @@
-#Spring MVC CRUD Application with Hibernate + JSP + MySQL + Maven + Eclipse
+# Spring MVC CRUD Application with Hibernate + JSP + MySQL + Maven + Eclipse
 
-##Development Steps
+## Development Steps
 
  1.  Create a Maven Web Application
  2.  Add Dependencies JSTL, MySQL,JSP Spring web in pom.xml File
