@@ -140,3 +140,9 @@ The spring-orm module provides the Spring integration with Hibernate:
                                         views
 			                                          customer-form.jsp
 			                                          list-customers.jsp
+						
+## 4. AppInitializer - Register a DispatcherServlet using Java-based Spring configuration
+
+    In Spring MVC, The DispatcherServlet needs to be declared and mapped for processing all requests either using java or web.xmlconfiguration.
+	
+    In a Servlet 3.0+ environment, you can use the AbstractAnnotationConfigDispatcherServletInitializer class to register and initialize the DispatcherServlet programmatically as follows.
