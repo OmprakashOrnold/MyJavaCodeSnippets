@@ -744,3 +744,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 </body>
 </html>
 ```
+
+## 12. Build and Run an application
+ As we are using maven build tool so first, we will need to build this application using the following maven command:
+
+      clean install
+
+Once build success, then we will run this application on tomcat server 8.5 in IDE or we can also deploy war file on the external tomcat webapps folder and run the application.
+	
