@@ -140,7 +140,7 @@ AbstractCachingViewResolver, XmlViewResolver, ResourceBundleViewResolver, UrlBas
 ### Q #13) Explain the working principle of the Spring MVC Framework.
 
 The below diagram will help in understanding the flow:
-<img src="https://www.softwaretestinghelp.com/wp-content/qa/uploads/2019/02/6.jpg" alt="MarineGEO circle logo" style="height: 500px; width:500px;"/>
+<img src="https://www.softwaretestinghelp.com/wp-content/qa/uploads/2019/02/6.jpg" alt="MarineGEO circle logo" style="height: 700px; width:700px;"/>
 
 working principle of the Spring MVC Framework
 
@@ -296,7 +296,7 @@ Syntax:
 
 It is a listener which helps the Spring MVC to bootstrap. It is used for loading and creating the applicationContext, to avoid writing explicit code. Spring bean is defined in the Application Context.
 
-<img src="https://www.softwaretestinghelp.com/wp-content/qa/uploads/2019/02/9.png" alt="MarineGEO circle logo" style="height: 50px; width:500px;"/>
+<img src="https://www.softwaretestinghelp.com/wp-content/qa/uploads/2019/02/9.png" alt="MarineGEO circle logo" style="height: 700px; width:700px;"/>
 
 
 root application context in Spring MVC
