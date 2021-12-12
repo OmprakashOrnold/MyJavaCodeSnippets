@@ -22,6 +22,6 @@ public static String  getResponseURLConnection(String url) {
 		}
 		return result.toString();
 	}
-  
+   
 ```
 
