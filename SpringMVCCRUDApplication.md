@@ -127,3 +127,16 @@ The spring-orm module provides the Spring integration with Hibernate:
         </dependency>
 
 ```
+## 3. Project Structure
+   Our final project structure looks like below format, we will look into each of the components one by one.
+   
+         packages
+                config
+                controller
+                dao
+                entity
+                service
+                             under web-inf
+                                        views
+			                                          customer-form.jsp
+			                                          list-customers.jsp
