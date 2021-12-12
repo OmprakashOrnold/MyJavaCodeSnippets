@@ -377,3 +377,136 @@ public class Customer {
     }
 }
 ```
+
+## 8. Spring MVC Controller Class - CustomerController.java
+
+Create a controller class to handle the Customer form data as follows.
+
+```java
+package com.spring.mvc.controller;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.spring.mvc.entity.Customer;
+import com.spring.mvc.service.CustomerService;
+
+@Controller
+@RequestMapping("/customer")
+public class CustomerController {
+
+    @Autowired
+    private CustomerService customerService;
+
+    @GetMapping("/list")
+    public String listCustomers(Model theModel) {
+        List < Customer > theCustomers = customerService.getCustomers();
+        theModel.addAttribute("customers", theCustomers);
+        return "list-customers";
+    }
+
+    @GetMapping("/showForm")
+    public String showFormForAdd(Model theModel) {
+        Customer theCustomer = new Customer();
+        theModel.addAttribute("customer", theCustomer);
+        return "customer-form";
+    }
+
+    @PostMapping("/saveCustomer")
+    public String saveCustomer(@ModelAttribute("customer") Customer theCustomer) {
+        customerService.saveCustomer(theCustomer);
+        return "redirect:/customer/list";
+    }
+
+    @GetMapping("/updateForm")
+    public String showFormForUpdate(@RequestParam("customerId") int theId,
+        Model theModel) {
+        Customer theCustomer = customerService.getCustomer(theId);
+        theModel.addAttribute("customer", theCustomer);
+        return "customer-form";
+    }
+
+    @GetMapping("/delete")
+    public String deleteCustomer(@RequestParam("customerId") int theId) {
+        customerService.deleteCustomer(theId);
+        return "redirect:/customer/list";
+    }
+}
+```
+
+## 9. Service Layer - CustomerService.java and CustomerServiceImpl.java
+
+Let's create a CustomerService interface and it's implementation under net.javaguides.springmvc.service package as follows.
+
+```java
+package com.spring.mvc.service;
+import java.util.List;
+
+import com.spring.mvc.entity.Customer;
+
+public interface CustomerService {
+
+    public List < Customer > getCustomers();
+
+    public void saveCustomer(Customer theCustomer);
+
+    public Customer getCustomer(int theId);
+
+    public void deleteCustomer(int theId);
+
+}
+```
+
+### CustomerServiceImpl.java
+We are using @Transactional annotation which is applied to the service layer for transaction support. @Service annotation used to annotate service layer implementation classes as in the below file.
+
+```java
+package com.spring.mvc.service;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.spring.mvc.dao.CustomerDAO;
+import com.spring.mvc.entity.Customer;
+
+@Service
+public class CustomerServiceImpl implements CustomerService {
+
+    @Autowired
+    private CustomerDAO customerDAO;
+
+    @Override
+    @Transactional
+    public List < Customer > getCustomers() {
+        return customerDAO.getCustomers();
+    }
+
+    @Override
+    @Transactional
+    public void saveCustomer(Customer theCustomer) {
+        customerDAO.saveCustomer(theCustomer);
+    }
+
+    @Override
+    @Transactional
+    public Customer getCustomer(int theId) {
+        return customerDAO.getCustomer(theId);
+    }
+
+    @Override
+    @Transactional
+    public void deleteCustomer(int theId) {
+        customerDAO.deleteCustomer(theId);
+    }
+}
+```
+
