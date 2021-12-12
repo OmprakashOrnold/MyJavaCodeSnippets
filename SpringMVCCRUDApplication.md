@@ -249,3 +249,18 @@ public class AppContext {
 - HibernateTransactionManager binds a Hibernate Session from the specified factory to the thread, potentially allowing for one thread-bound Session per factory.
 - This transaction manager is appropriate for applications that use a single Hibernate SessionFactory for transactional data access, but it also supports direct DataSource access within a transaction i.e. plain JDBC.
 
+### database.properties
+Create database.properties file under the resources folder and put the following database configuration in it.
+   
+   ```xml
+jdbc.driverClassName = com.mysql.jdbc.Driver
+jdbc.url = jdbc:mysql://localhost:3306/demo?useSSL=false
+jdbc.username = root
+jdbc.password = 12345
+hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+hibernate.show_sql = true
+hibernate.format_sql = true
+hibernate.hbm2ddl.auto = update
+   ```
+
+
