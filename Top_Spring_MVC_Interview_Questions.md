@@ -39,13 +39,13 @@ Code Example to show dispatcher servlet usage.:
 <display-name>Software Testing Help Web Application</display-name>
  
 <servlet>
-<servlet-name>SoftwareTestingHelp</servlet-name>
+<servlet-name>springmvc</servlet-name>
 <servlet-class>org.Springframework.web.servlet.DispatcherServlet</servlet-class>
 <load-on-startup>1</load-on-startup>
 </servlet>
  
 <servlet-mapping>
-<servlet-name>SoftwareTestingHelp</servlet-name>
+<servlet-name>springmvc</servlet-name>
 <url-pattern>/</url-pattern>
 </servlet-mapping>
  
@@ -82,7 +82,7 @@ Code Example:
 
 Example:
 ```java
-package com.SoftwareTestingHelp;
+package com.springmvc;
 import org.Springframework.beans.factory.annotation.Autowired;
  
 public class WordEditor {
