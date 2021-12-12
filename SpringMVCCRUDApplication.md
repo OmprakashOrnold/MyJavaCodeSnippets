@@ -262,5 +262,118 @@ hibernate.show_sql = true
 hibernate.format_sql = true
 hibernate.hbm2ddl.auto = update
    ```
+## 6. WebMvcConfig - Spring MVC Bean Configuration using Java-based Spring configuration
+ Create an MVCConfig class and annotated with @Configuration, @EnableWebMvc, and @ComponentScan annotations.
 
+```java
+  package com.spring.mvc.config;
+import org.springframework.context.annotation.Bean;
 
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
+
+/**
+ * @author Om Prakash
+ */
+
+@Configuration
+@EnableWebMvc
+@ComponentScan(basePackages = { "com.spring.mvc"})
+public class WebMvcConfig implements WebMvcConfigurer {
+
+    @Bean
+    public InternalResourceViewResolver resolver() {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setViewClass(JstlView.class);
+        resolver.setPrefix("/WEB-INF/views/");
+        resolver.setSuffix(".jsp");
+        return resolver;
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry
+            .addResourceHandler("/resources/**")
+            .addResourceLocations("/resources/");
+    }
+}
+```
+
+## 7. JPA Entity - Customer.java
+
+Create a @Entity class, whose field names are annotated JPA annotations. We will use this entity class for mapping the database table with Customer. It will also be used for binding from data to the model using @ModelAttribute annotation in controller's handler method.
+
+```java
+package com.spring.mvc.entity;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "customer")
+public class Customer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "email")
+    private String email;
+
+    public Customer() {
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
+    }
+}
+```
