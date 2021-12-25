@@ -411,4 +411,240 @@ spring.jpa.hibernate.ddl-auto=update
 
 ```
 
+## Add Pagenation to Blog app
 
+### changes in service impl , service and controller
+### create entity on payload package
+
+### PostResponse
+
+```java
+package com.springboot.blog.payload;
+
+import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class PostResponse {
+
+	private List<PostDto> content;
+	private int pageNo;
+	private int pageSize;
+	private Long totalElments;
+	private int totalPages;
+	private boolean last;
+	
+}
+
+```
+
+### PostService
+
+```java
+package com.springboot.blog.service;
+
+import com.springboot.blog.payload.PostDto;
+import com.springboot.blog.payload.PostResponse;
+
+public interface PostService {
+
+	public PostDto createPost(PostDto postDto);
+
+	public PostResponse getAllPosts(int pageNo,int pageSize);
+	
+	public PostDto getPostById(Long id);
+	
+	public PostDto updatePost(PostDto postDto,Long id);
+	
+	public void deletePostById(Long id);
+
+	
+}
+
+```
+
+### PostServiceImpl
+
+```java
+package com.springboot.blog.service.impl;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
+
+import com.springboot.blog.entity.Post;
+import com.springboot.blog.exception.ResourceNotFoundException;
+import com.springboot.blog.payload.PostDto;
+import com.springboot.blog.payload.PostResponse;
+import com.springboot.blog.repository.PostRepository;
+import com.springboot.blog.service.PostService;
+
+@Service
+public class PostServiceImpl implements PostService {
+
+	private PostRepository postRepo;
+
+	public PostServiceImpl(PostRepository postRepo) {
+		this.postRepo = postRepo;
+	}
+
+	@Override
+	public PostDto createPost(PostDto postDto) {
+
+		//convert entity to dto
+		Post post = mapToEntity(postDto);		
+		Post newpost=postRepo.save(post);
+		//convert dto to entity
+		PostDto postDtoResponse = mapToDto(newpost);
+
+		return postDtoResponse;
+	}
+
+
+	@Override
+	public PostResponse getAllPosts(int pageNo,int pageSize){
+		//create pageable instance
+		PageRequest pageable =PageRequest.of(pageNo, pageSize);
+		
+		//pass page reqest into find all method
+		Page<Post> posts=postRepo.findAll(pageable);
+		
+		//get content form posts
+		List<Post> listOfPosts=posts.getContent();
+		List<PostDto> content= listOfPosts.stream().map(post ->mapToDto(post)).collect(Collectors.toList());
+		
+		PostResponse postResponse=new PostResponse();
+		postResponse.setContent(content);
+		postResponse.setPageNo(posts.getNumber());
+		postResponse.setPageSize(posts.getSize());
+		postResponse.setTotalElments(posts.getTotalElements());
+		postResponse.setTotalPages(posts.getTotalPages());
+		postResponse.setLast(posts.isLast());
+		
+		return postResponse;
+	}
+
+	@Override
+	public PostDto getPostById(Long id) {
+		Post post=postRepo.findById(id).orElseThrow( () ->new ResourceNotFoundException("post","id",id));
+		return mapToDto(post);
+	}
+
+
+	@Override
+	public PostDto updatePost(PostDto postDto ,Long id) {
+
+		Post post=postRepo.findById(id).orElseThrow( () ->new ResourceNotFoundException("post","id",id));
+
+		post.setTitle(postDto.getTitle());
+		post.setDescription(postDto.getDescription());
+		post.setContent(postDto.getContent());
+
+		Post updatedPost=postRepo.save(post);
+		return mapToDto(updatedPost);
+	}
+
+
+	@Override
+	public void deletePostById(Long id) {
+
+		Post post=postRepo.findById(id).orElseThrow( () ->new ResourceNotFoundException("post","id",id));
+		postRepo.delete(post);
+	}
+
+
+	private PostDto mapToDto(Post newpost) {
+		PostDto postDtoResponse=new PostDto();
+		postDtoResponse.setId(newpost.getId());
+		postDtoResponse.setTitle(newpost.getTitle());
+		postDtoResponse.setDescription(newpost.getDescription());
+		postDtoResponse.setContent(newpost.getContent());
+		return postDtoResponse;
+	}
+
+	private Post mapToEntity(PostDto postDto) {
+		Post post=new Post();
+		post.setTitle(postDto.getTitle());
+		post.setDescription(postDto.getDescription());
+		post.setContent(postDto.getContent());
+		return post;
+	}
+
+}	
+
+```
+
+### PostController
+
+```java
+package com.springboot.blog.controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.springboot.blog.payload.PostDto;
+import com.springboot.blog.payload.PostResponse;
+import com.springboot.blog.service.PostService;
+
+@RestController
+@RequestMapping("api/posts")
+public class PostController {
+
+	private PostService postService;
+
+	public PostController(PostService postService) {
+		this.postService = postService;
+	}
+	
+	@PostMapping
+	public ResponseEntity<PostDto> createPost(@RequestBody PostDto postDto){
+		return new ResponseEntity<PostDto>(postService.createPost(postDto), HttpStatus.CREATED);	
+	}
+	
+	@GetMapping
+	public PostResponse getAllPosts(
+			@RequestParam(value="pageNo",defaultValue = "0",required = false) int pageNo,
+			@RequestParam(value="pageSize",defaultValue = "10",required = false) int pageSize
+			){
+		return postService.getAllPosts(pageNo,pageSize);		
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<PostDto> getPostById(@PathVariable(name = "id") Long id) {		
+		return  ResponseEntity.ok(postService.getPostById(id));	
+	}
+
+	@PutMapping("/{id}")
+	public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto ,@PathVariable(name = "id") Long id) {		
+		PostDto postResonse=postService.updatePost(postDto, id);
+		return new ResponseEntity<>(postResonse,HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<String> deletePost(@PathVariable(name = "id") Long id) {		
+		postService.deletePostById(id);
+		return new ResponseEntity<>("deleted post successfully ",HttpStatus.OK);
+	}
+	
+	
+
+}
+
+```
