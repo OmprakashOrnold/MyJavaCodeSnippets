@@ -727,7 +727,9 @@ public interface PostService {
 ```
 
 ### PostServiceImpl
-	package com.springboot.blog.service.impl;
+
+```java
+package com.springboot.blog.service.impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
