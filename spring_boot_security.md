@@ -7,7 +7,7 @@
   </dependency>
 ```
 
-## Basic Auth (random password)
+## Basic Authentication (random password)
    Enbale debug from application.properties
    ```xml
    logging.level.org.springframework.security=debug
@@ -15,12 +15,12 @@
    Just run and enter username user
    copy password from consle paste it on password
    
-## Basic Auth Single user
+## Basic Authentication Single user
  ```xml
 spring.security.user.name=omprakash
 spring.security.user.password=1234
 ```
-## Basic Http Auth Single user Authenticate all Requests
+## Basic Http Authentication Single user Authenticate all Requests
 
 ```java
 
@@ -85,7 +85,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 ```
 
-# In Memory Authontication multiple user with role based method level security 
+## In Memory Authentication multiple user with role based method level security 
 
 
 ```java
