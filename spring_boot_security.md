@@ -141,3 +141,111 @@ add this annotation on controller to implement method level security
 ```java
 @PreAuthorize("hasRole('ADMIN')")
 ```
+# Steps to Implement JDBC Authentication using mysql
+## Create user amd role classes
+
+```java
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name="user" ,uniqueConstraints = {
+		@UniqueConstraint(columnNames= {"username"}),
+		@UniqueConstraint(columnNames= {"email"})
+})
+public class User {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	private String name;
+	private String username;
+	private String email;
+	private String password;
+
+	@ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+	@JoinTable(name = "user_roles",
+	     joinColumns=@JoinColumn(name ="user_id",referencedColumnName ="id" ),
+	     inverseJoinColumns=@JoinColumn(name ="role_id",referencedColumnName ="id" ))
+	private Set<Role> roles;	
+
+}
+
+```
+
+```java
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+
+@Entity
+@Table(name ="roles")
+public class Role {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
+	private Long id;
+	
+	private String name;
+
+}
+
+```
+
+## create UserRepository and RoleRepository
+
+```java
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.springboot.blog.entity.User;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+
+	Optional<User> findByEmail(String email);
+	Optional<User> findByUsername(String username);
+	Optional<User> findByUsernameOrEmail(String email,String username);
+	boolean existEmail(String email);
+	boolean existUsername(String username);
+}
+
+```
+
+```java
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.springboot.blog.entity.Role;
+
+public interface RoleRepository extends JpaRepository<Role, Long> {
+
+	Optional<Role> findByName(String name);
+}
+
+```
