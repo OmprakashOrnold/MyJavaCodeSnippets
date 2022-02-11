@@ -1,3 +1,44 @@
+
+
+
+####  Difference between abstract classes and interfaces
+| Abstract Class  |  Interfaces |
+| ------------ | ------------ |
+|Abstract class declared using **abstract** keyword. |Interface is declared using **interface** keyword.
+Abstract class can have both an **abstract** as well as **concrete** methods. |  Interface can have **only abstract methods**. Java 8 onwards, it can have **default** as well as **static** methods. |
+Multiple Inheritance is **not supported**.|Interface **supports** Multiple Inheritance.
+final, non-final, static and non-static **variables supported**.|Only static and final **variables are permitted**
+Abstract class can **implement** an interface.|Interface **can not implement** an interface, it can extend an interface.
+Abstract class can have any type of members like **private, public**.|Interface can only have **public members**.
+
+
+------------
+
+
+
+####  Difference between String, StringBuilder, and StringBuffer.
+| Factor  |  String | StringBuilder  | StringBuffer  |
+| ------------ | ------------ | ------------ | ------------ |
+|  **Storage Area** |Constant String Pool   |  Heap Area | Heap Area  |
+| **Mutability**  | Immutable  |  Mutable |   Mutable|
+|  **Thread Safety** | Yes  |  No |  No |
+**Performance**|Fast|More efficient|Less efficient
+
+
+------------
+
+
+
+#### Difference between this() and super() 
+|  this() |  super() |
+| ------------ | ------------ |
+| this() represents the **current instance** of a class  |  super() represents the **current instance of a parent/base class** |
+Used to call the **default constructor of the same class**|Used to call the **default constructor of the parent/base class**
+Used to **access methods of the current** class|Used to access **methods of the base class**
+Used for **pointing the current class** instance|Used for **pointing the superclass instance**
+Must be the **first line of a block**|Must be the **first line of a block**
+
+
 #### Difference Between the constructors and methods
 |  Methods |  Constructors |
 | ------------ | ------------ |
@@ -6,6 +47,10 @@ Must have a **return type**|Do not have any **return type**
 Needs to be invoked **explicitly**|Is invoked **implicitly**
 **No default method** is provided by the compiler|A **default constructor** is provided by the compiler if the class has none
 Method name **may or may not be** same as class name|Constructor name must always be the **same as the class name**
+
+
+------------
+
 
 
 #### Difference Between Method Overloading and Method Overriding 
