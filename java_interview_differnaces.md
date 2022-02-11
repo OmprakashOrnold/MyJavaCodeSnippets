@@ -11,8 +11,6 @@ HashMap  works on the Principle of **Hashing** |Hashtable   works on the Princip
 
 ------------
 
-[========]
-
 
 
 #### Difference between == and equals method in java
@@ -24,8 +22,6 @@ HashMap  works on the Principle of **Hashing** |Hashtable   works on the Princip
 == is a **binary** operator| equals() is a **method**.
 
 ------------
-
-[========]
 
 
 #### Difference between Collection and Collections in Java
@@ -39,9 +35,8 @@ Important Methods in Collections **Class** |Important Methods in Collection **In
 Collections.sort()|boolean add()
 Collections.reverse()|boolean remove(Object o)
 Collections.min()|boolean isEmpty()
-------------
-[========]
 
+------------
 
 
 
