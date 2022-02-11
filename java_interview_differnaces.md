@@ -1,3 +1,15 @@
+| Method Overloading  |  Method Overriding |
+| ------------ | ------------ |
+| Method overloading is a **compile-time** polymorphism.  |  Method overriding is a **run-time** polymorphism. |
+It helps to **increase** the **readability** of the program|It is used to **grant** the **specific** implementation of the method which is already **provided** by its **parent** class or **superclass**
+It occurs within the **class**.|It is performed in **two** classes with **inheritance** relationships.
+Method overloading **may or may not** require inheritance.|Method overriding a**lways needs** inheritance.
+In method overloading, methods must have the same name and **different signatures**|In method overriding, methods must have the **same name and same signature**.
+In method overloading, the return type **can or can not be the same**, but we just have to change the parameter.|In method overriding, the **return type must be the same**
+
+------------
+
+
 ####  Difference between HashMap and Hashtable / HashMap vs Hashtable  
 
 | HashMap  | Hashtable  |
