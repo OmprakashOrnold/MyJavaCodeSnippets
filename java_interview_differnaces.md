@@ -1,3 +1,15 @@
+#### Difference Between the constructors and methods
+|  Methods |  Constructors |
+| ------------ | ------------ |
+|   Used to represent the **behavior** of an **object** |   Used to **initialize** the **state** of an object|
+Must have a **return type**|Do not have any **return type**
+Needs to be invoked **explicitly**|Is invoked **implicitly**
+**No default method** is provided by the compiler|A **default constructor** is provided by the compiler if the class has none
+Method name **may or may not be** same as class name|Constructor name must always be the **same as the class name**
+
+
+#### Difference Between Method Overloading and Method Overriding 
+
 | Method Overloading  |  Method Overriding |
 | ------------ | ------------ |
 | Method overloading is a **compile-time** polymorphism.  |  Method overriding is a **run-time** polymorphism. |
@@ -9,8 +21,17 @@ In method overloading, the return type **can or can not be the same**, but we ju
 
 ------------
 
+#### Difference Between == and equals method in java
 
-####  Difference between HashMap and Hashtable / HashMap vs Hashtable  
+| == operator   |  equals method  |
+| ------------ | ------------ |
+|  == operator is used to compare **primitives**  |  equals() method is used to check **equality** of objects. |
+== compares two objects based on **memory reference**|equals method compares based on the **values**.
+== is a **binary** operator| equals() is a **method**.
+
+------------
+
+####  Difference Between HashMap and Hashtable 
 
 | HashMap  | Hashtable  |
 | ------------ | ------------ |
@@ -25,18 +46,7 @@ HashMap  works on the Principle of **Hashing** |Hashtable   works on the Princip
 
 
 
-#### Difference between == and equals method in java
-
-| == operator   |  equals method  |
-| ------------ | ------------ |
-|  == operator is used to compare **primitives**  |  equals() method is used to check **equality** of objects. |
-== compares two objects based on **memory reference**|equals method compares based on the **values**.
-== is a **binary** operator| equals() is a **method**.
-
-------------
-
-
-#### Difference between Collection and Collections in Java
+#### Difference Between Collection and Collections in Java
 | Collection  |  Collections |
 | ------------ | ------------ |
 | Collection is a **root level interface** in Java Collection Framework   |  Collections is a **utility class** in java which contains only **static methods** that operate on or return **collections**. |
