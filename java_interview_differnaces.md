@@ -20,5 +20,7 @@ HashMap  works on the Principle of **Hashing** |Hashtable   works on the Princip
 #### Difference between Collection and Collections in Java
 | Collection  |  Collections |
 | ------------ | ------------ |
-| Collection is a **root level interface** in Java Collection Framework   |  Collections is a **utility class** in java which contains only **static methods** that operate on or return collections. |
-
+| Collection is a **root level interface** in Java Collection Framework   |  Collections is a **utility class** in java which contains only **static methods** that operate on or return **collections**. |
+Collection is an **interface**. Interface can contain **static methods** since java 8. **Before java8**, interface was not allowed to contain static methods. Interface can also contain **abstract** methods and **default** methods.|Collections class contains only **static methods**.
+Collection interface **extends** **iterable** interface.|Collections class e**xtends Object** class.
+Both are part of the **Java Collections Framework**.|Both are present in **java.util package.**
