@@ -22,7 +22,9 @@
             Integer value = 20
             Node next = null
   }
-
+  ```
+  
+  
 - **Inserting another Key-Value Pair:** Now, putting other pair that is,
 
  `map.put(new Key("sachin"), 30);`
