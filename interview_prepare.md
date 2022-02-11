@@ -1,20 +1,20 @@
 ####  Explain the difference between constructor and setter injection?
 
--     In constructor injection, **partial injection is not allowed**
-     whereas it is allowed in setter injection.
--     The constructor injection doesn’t override the **setter property**
-whereas the same is **not true** for setter injection.
--     Constructor injection **creates a new instance** if any modification is done. The creation of a new instance is not possible in setter injection.
--     In case the **bean has many properties**, then constructor injection is preferred. If it has **few properties**, then setter injection is preferred.
+- In constructor injection, **partial injection is not allowed**
+      whereas it is allowed in setter injection.
+- The constructor injection doesn’t override the **setter property**
+      whereas the same is **not true** for setter injection.
+- Constructor injection **creates a new instance** if any modification is done. The creation of a new instance is not possible in setter injection.
+- In case the **bean has many properties**, then constructor injection is preferred. If it has **few properties**, then setter injection is preferred.
 
 #### What are the bean scopes available in Spring
 The Spring Framework has five scope supports. They are:
 
--  **Singleton**: The scope of bean definition while using this would be a single instance per IoC container.
--     **Prototype**: Here, the scope for a single bean definition can be any number of object instances.
--     **Request**: The scope of the bean definition is an HTTP request.
--     **Session**: Here, the scope of the bean definition is HTTP-session.
--     **Global-session**: The scope of the bean definition here is a Global HTTP session.
+- **Singleton**: The scope of bean definition while using this would be a single instance per IoC container.
+- **Prototype**: Here, the scope for a single bean definition can be any number of object instances.
+- **Request**: The scope of the bean definition is an HTTP request.
+- **Session**: Here, the scope of the bean definition is HTTP-session.
+- **Global-session**: The scope of the bean definition here is a Global HTTP session.
 
 Note: The last three scopes are available only if the users use web-aware ApplicationContext containers.
 
