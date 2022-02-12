@@ -1,3 +1,50 @@
+#### Difference Between @RequestParam and @PathVariable
+| @RequestParam   |@PathVariable   |
+| ------------ | ------------ |
+|   @RequestParam used for accessing the values of the **query parameters**  | @PathVariable used for accessing the values from the **URI template**.  |
+http://localhost:8080/springmvc/hello/101?param1=10&param2=20|http://localhost:8080/springmvc/hello/101?param1=10&amp;param2=20|
+RequestParam annotation used for accessing the query parameter **values** from the request|@PathVariable identifies the pattern that is used in the URI for the **incoming request**. 
+
+
+
+------------
+
+
+
+
+####  Difference between openSession() and getCurrentSession()
+|  openSession()  | getCurrentSession()  |
+| ------------ | ------------ |
+| It always create **new Session object**|It creates a new Session **if not exists** , else use same session which is in current hibernate context
+You need to **explicitly** flush and close session objects|You do **not need to flush and close session** objects, it will be automatically taken care by Hibernate internally|
+In single threaded environment , It is **slower** than getCurrentSession|In single threaded environment , It is **faster** than getOpenSession
+You **do not need to configure any property to call** this method|You need to configure additional property **“hibernate.current_session_context_class”** to call getCurrentSession method, otherwise it will throw exceptions.
+
+
+------------
+
+
+####  Difference between load() and get()
+| load()  | get()  |
+| ------------ | ------------ |
+|  Only use load() method if **you are sure that the object exists**. |If **you are not sure that the object exist**, then use one of get() methods.   |
+load() method will **throw an exception** if the unique id is not found in the database.|get() method will **return null** if the unique id is not found in the database.
+load() just **returns a proxy by default** and database won't be hit until the proxy is first invoked.|get() will hit the **database immediately.**
+
+
+------------
+
+
+####  Difference between FetchType.LAZY and FetchType.EAGER
+| FetchType.LAZY  | FetchType.EAGER  |
+| ------------ | ------------ |
+|   is on **demand** (i.e. when we required the data). |  is **immediate** (i.e. before our requirement comes we are unnecessarily fetching the record)   |
+ does not load the relationships **unless you invoke** it via the getter method. |This **loads all** the relationships.
+improves performance by avoiding unnecessary **computation** and **reduce memory** requirements.| takes **more memory consumption** and **processing speed is slow**. 
+The best practice is to use **FetchType.LAZY** with a mapper (like MapStruct) to transfer data from Entity to another data object DTO and then send it back to the controller, so there is **no exception if the session closed**.|The easiest one is to use **FetchType.EAGER** or any other **Anti-patterns solutions**, So that the session will still be alive at the controller method, but these **methods will impact the performance**.
+
+
+------------
 
 
 
