@@ -78,3 +78,52 @@ the desired result.
     list.stream().filter(name->name!=null && name.startsWith("D"))
     .forEach(System.out::println);
  ```
+ 
+ ## c) filter() Method
+```java
+List<Employee> empList=new ArrayList<Employee>();
+empList.add(new Employee(1,"Marco","marco@gmail.com",25000));
+empList.add(new Employee(2,"Daisy","daisy@gmail.com",30000));
+empList.add(new Employee(3,"Michael","michael@gmail.com",40000));
+empList.add(new Employee(4,"Sanya","sanya@gmail.com",28000));
+empList.add(new Employee(5,"Robin","robin@gmail.com",50000));
+
+empList.stream().filter(employee->employee.getSalary()>25000)
+.forEach(employee -> System.out.println(employee.getName()));
+```
+## a) map() Method
+```java
+List<Integer> list = Arrays.asList(2,3,5,7,9);
+resultList= list.stream().map(n->n*n).collect(Collectors.toList();
+System.out.println(resultList);
+list.stream().map(n->n*n).forEach(System.out::println);
+```
+## b) map() Method
+```java
+List<String> list = Arrays.asList("Marco","Daisy","Michael","Sanya","Robin");
+list.stream()
+.map(name->name.toUpperCase())
+.forEach(System.out::println);
+
+resultList= list.stream().map(name->name.toUpperCase())
+.collect(Collectors.toList());
+
+System.out.println(resultList);
+```
+
+## C) map() Method
+```java
+List<Employee> empList=new ArrayList<Employee>();
+empList.add(new Employee(1,"Marco","marco@gmail.com",25000));
+empList.add(new Employee(2,"Daisy","daisy@gmail.com",30000));
+empList.add(new Employee(3,"Michael","michael@gmail.com",40000));
+empList.add(new Employee(4,"Sanya","sanya@gmail.com",28000));
+empList.add(new Employee(5,"Robin","robin@gmail.com",50000));
+
+List<String> nameList = empList.stream().filter(emp->emp.getSalary()>25000)
+.map(emp->emp.getName())
+.collect(Collectors.toList());
+
+System.out.println(nameList);
+```
+
