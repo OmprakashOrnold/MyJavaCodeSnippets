@@ -323,19 +323,16 @@ list.stream()
 List<String> list = Arrays.asList("Marco","Daisy","Michael","Sanya","Robin");
 
 //min()
-Optional<String> minValue = list.stream()
-.min(Comparator.comparing(String::valueOf));
+Optional<String> minValue = list.stream().min(Comparator.comparing(String::valueOf));
 if(minValue.isPresent()){
-System.out.println(minValue.get()); // Daisy
+       System.out.println(minValue.get()); // Daisy
 }
 
-list.stream()
-.min(Comparator.comparing(String::valueOf))
+list.stream().min(Comparator.comparing(String::valueOf))
 .ifPresent(no-> System.out.println("min value is .." + no)); // Daisy
 
 // max()
-list.stream()
-.max(Comparator.comparing(String::valueOf))
+list.stream().max(Comparator.comparing(String::valueOf))
 .ifPresent(no-> System.out.println("max value is .." + no)); // Sanya
 ```
 
@@ -359,3 +356,21 @@ empList.stream().min(Comparator.comparing(Employee::getSalary))
 empList.stream().max(Comparator.comparing(Employee::getSalary))
 .ifPresent(employee -> System.out.println("employee with max salary is " + employee.getName())); //Robin
 ```
+
+### 1) findAny() and findFirst() Method
+```java
+List<String> courseList= Arrays.asList("Java","Python","Ruby","Javascript","Java","Angular","React");
+//findAny()
+Optional<String> result = courseList.stream().findAny();
+if(result.isPresent()) {
+     System.out.println(result.get());
+}
+
+//findFirst()
+Optional<String> result = courseList.stream().findFirst();
+if(result.isPresent()) {
+      System.out.println(result.get());
+}
+```
+
+
