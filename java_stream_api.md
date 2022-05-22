@@ -126,4 +126,66 @@ List<String> nameList = empList.stream().filter(emp->emp.getSalary()>25000)
 
 System.out.println(nameList);
 ```
+### 1) flatMap() Method
+```java
+List<String> list1 = Arrays.asList("Marco","Daisy");
+List<String> list2 = Arrays.asList("Michael","Sanya");
+List<String> list3 = Arrays.asList("Robin");
+
+List<List<String>> finalList = Arrays.asList(list1, list2, list3);
+
+System.out.println(finalList);
+
+List<String> resultList = finalList.stream()
+.flatMap(list -> list.stream())
+.collect(Collectors.toList());
+
+System.out.println(resultList);
+```
+
+### 2) flatMap() Method
+```java
+List<Integer> list1 = Arrays.asList(2,3);
+List<Integer> list2 = Arrays.asList(5,7);
+List<Integer> list3 = Arrays.asList(9,11);
+
+List<List<Integer>> finalList = Arrays.asList(list1, list2, list3);
+
+List<Integer> resultList = finalList.stream()
+                          .flatMap(list->list.stream())
+                          .filter(n->n%2==0)
+                          .collect(Collectors.toList());
+
+System.out.println(resultList);
+```
+### 3) flatMap() Method
+```java
+List<Author> authorList= Arrays.asList(new Author(1,"author1", Arrays.asList("book1","book2")),
+new Author(2,"author2", Arrays.asList("book3","book4")),
+new Author(3,"author3", Arrays.asList("book5","book6")));
+
+System.out.println(authorList);
+
+//map() // List<Author> -> List<String> // op : [author1,author2,author3]
+
+List<String> nameList = authorList.stream()
+                       .map(author->author.getName())
+                       .collect(Collectors.toList());
+
+System.out.println(nameList);
+
+List<List<String>> bookList1 = authorList.stream()
+                    .map(list -> list.getBooks())
+                   .collect(Collectors.toList());
+
+System.out.println(bookList1);
+
+// flatMap() // List<Author> -> book list // op:[book1,book2,book3,book4,book5,book6]
+
+List<String> bookList = authorList.stream()
+                       .flatMap(list -> list.getBooks().stream())
+                       .collect(Collectors.toList());
+
+System.out.println(bookList);
+```
 
