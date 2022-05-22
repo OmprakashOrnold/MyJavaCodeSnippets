@@ -66,7 +66,8 @@ the desired result.
 ### 1) filter() Method
 ```java
     List<Integer> list = Arrays.asList(10,15,17,20,15,30);
-    evenList= list.stream().filter(n->n%2==0).collect(Collectors.toList());
+    evenList= list.stream().filter(n->n%2==0)
+              .collect(Collectors.toList());
     System.out.println(evenList);
  ```
 
@@ -74,9 +75,9 @@ the desired result.
 ```java
     List<String> list = Arrays.asList("Lipsa","Daisy","David","Daniel",null,"Sanya",null); 
     List<String> resultList = new ArrayList<String>();    
-    resultList=list.stream().filter(name->name!=null && name.startsWith("D")).collect(Collectors.toList());
-    list.stream().filter(name->name!=null && name.startsWith("D"))
-    .forEach(System.out::println);
+    resultList=list.stream().filter(name->name!=null && name.startsWith("D"))
+              .collect(Collectors.toList());
+    list.stream().filter(name->name!=null && name.startsWith("D")).forEach(System.out::println);
  ```
  
  ### 3) filter() Method
@@ -95,18 +96,20 @@ empList.stream().filter(employee->employee.getSalary()>25000)
 ```java
 List<Integer> list = Arrays.asList(2,3,5,7,9);
 resultList= list.stream().map(n->n*n).collect(Collectors.toList();
+
 System.out.println(resultList);
+
 list.stream().map(n->n*n).forEach(System.out::println);
 ```
 ### 2) map() Method
 ```java
 List<String> list = Arrays.asList("Marco","Daisy","Michael","Sanya","Robin");
-list.stream()
-.map(name->name.toUpperCase())
-.forEach(System.out::println);
+                   list.stream()
+                   .map(name->name.toUpperCase())
+                  .forEach(System.out::println);
 
 resultList= list.stream().map(name->name.toUpperCase())
-.collect(Collectors.toList());
+            .collect(Collectors.toList());
 
 System.out.println(resultList);
 ```
@@ -121,8 +124,8 @@ empList.add(new Employee(4,"Sanya","sanya@gmail.com",28000));
 empList.add(new Employee(5,"Robin","robin@gmail.com",50000));
 
 List<String> nameList = empList.stream().filter(emp->emp.getSalary()>25000)
-.map(emp->emp.getName())
-.collect(Collectors.toList());
+                        .map(emp->emp.getName())
+                        .collect(Collectors.toList());
 
 System.out.println(nameList);
 ```
@@ -137,8 +140,8 @@ List<List<String>> finalList = Arrays.asList(list1, list2, list3);
 System.out.println(finalList);
 
 List<String> resultList = finalList.stream()
-.flatMap(list -> list.stream())
-.collect(Collectors.toList());
+                        .flatMap(list -> list.stream())
+                        .collect(Collectors.toList());
 
 System.out.println(resultList);
 ```
