@@ -300,3 +300,62 @@ Optional<Float> result1 = empList.stream().filter(emp -> emp.getSalary() > 25000
 System.out.println(result1.get());
 ```
 
+### 1) min() and max() Method
+```java
+List<Integer> list = Arrays.asList(10,15,20,25,30);
+//min()
+Optional<Integer> minValue = list.stream()
+                            .min(Comparator.comparing(Integer::intValue));
+if(minValue.isPresent()){
+System.out.println(minValue.get()); //10
+}
+
+list.stream().min(Comparator.comparing(Integer::intValue))
+.ifPresent(no-> System.out.println("the min value is..." + no));
+
+//max()
+list.stream()
+.max(Comparator.comparing(Integer::intValue))
+.ifPresent(no-> System.out.println("the max value is ..." +no)); //30
+```
+### 2) min() and max()  Method
+```java
+List<String> list = Arrays.asList("Marco","Daisy","Michael","Sanya","Robin");
+
+//min()
+Optional<String> minValue = list.stream()
+.min(Comparator.comparing(String::valueOf));
+if(minValue.isPresent()){
+System.out.println(minValue.get()); // Daisy
+}
+
+list.stream()
+.min(Comparator.comparing(String::valueOf))
+.ifPresent(no-> System.out.println("min value is .." + no)); // Daisy
+
+// max()
+list.stream()
+.max(Comparator.comparing(String::valueOf))
+.ifPresent(no-> System.out.println("max value is .." + no)); // Sanya
+```
+
+### 3) min() and max() Method
+```java
+List<Employee> empList=new ArrayList<Employee>();
+
+empList.add(new Employee(1,"Marco","marco@gmail.com",25000));
+empList.add(new Employee(2,"Daisy","daisy@gmail.com",30000));
+empList.add(new Employee(3,"Michael","michael@gmail.com",40000));
+empList.add(new Employee(4,"Sanya","sanya@gmail.com",28000));
+empList.add(new Employee(5,"Robin","robin@gmail.com",50000));
+
+//min()
+
+empList.stream().min(Comparator.comparing(Employee::getSalary))
+.ifPresent(employee -> System.out.println("employee with min salary is " + employee.getName())); //Marco
+
+//max()
+
+empList.stream().max(Comparator.comparing(Employee::getSalary))
+.ifPresent(employee -> System.out.println("employee with max salary is " + employee.getName())); //Robin
+```
