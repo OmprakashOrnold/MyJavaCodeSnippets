@@ -220,13 +220,13 @@ empList.stream().sorted(Comparator.comparing(Employee::getDepartment).thenCompar
 .forEach(System.out::println);
 ```
 
-### 1) distinct() Method
+###  distinct() Method
 ```java
 List<String> courseList= Arrays.asList("Java","Python","Ruby","Javascript","Java","Angular","React");
 
 courseList.stream().distinct().forEach(System.out::println);
 ```
-### 2) limit() Method
+###  limit() Method
 ```java
 List<Integer> numList = new ArrayList<>();
 
@@ -244,12 +244,59 @@ System.out.println(resultList);
 }
 ```
 
-### 2) skip() Method
+### skip() Method
 ```java
 List<Integer> numList = Arrays.asList(0,1,2,3,4,5,10,20,30,40,50);
 List<Integer> resultList = numList.stream().skip(5)
                         .collect(Collectors.toList());
 
 System.out.println(resultList);
+```
+### 1) reduce() Method
+```java
+List<Integer> list = Arrays.asList(10,15,20,25,30);
+
+// before java 8
+Integer sum = 0;
+for (Integer no:list) {
+      sum = sum+no;
+}
+System.out.println(sum);
+
+// using reduce() method
+Optional<Integer> result = list.stream().reduce((a, b) -> a + b);
+System.out.println(result.get());
+
+// using method reference
+Optional<Integer> result1 = list.stream().reduce(Integer::sum);
+System.out.println(result1.get());
+
+//using identity accumalator
+Integer result2 = list.stream().reduce(0, (a, b) -> a + b);
+System.out.println(result2);
+```
+### 2) reduce() Method
+```java
+List<String> list = Arrays.asList("Marco","Daisy","Michael","Sanya","Robin");
+Optional<String> result = list.stream().reduce((a, b) -> a.length() > b.length() ? a : b);
+
+System.out.println(result.get()); //Michael
+```
+
+### 3) reduce() Method
+```java
+List<Employee> empList=new ArrayList<Employee>();
+empList.add(new Employee(1,"Marco","marco@gmail.com",25000));
+empList.add(new Employee(2,"Daisy","daisy@gmail.com",30000));
+empList.add(new Employee(3,"Michael","michael@gmail.com",40000));
+empList.add(new Employee(4,"Sanya","sanya@gmail.com",28000));
+empList.add(new Employee(5,"Robin","robin@gmail.com",50000));
+
+Optional<Float> result = empList.stream().filter(emp -> emp.getSalary() > 25000).map(emp -> emp.getSalary()).reduce((a, b) -> a > b ? a : b);
+System.out.println(result.get());
+
+Optional<Float> result1 = empList.stream().filter(emp -> emp.getSalary() > 25000).map(emp -> emp.getSalary()).reduce(Float::max);
+
+System.out.println(result1.get());
 ```
 
