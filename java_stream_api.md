@@ -79,7 +79,7 @@ the desired result.
     .forEach(System.out::println);
  ```
  
- ## c) filter() Method
+ ### c) filter() Method
 ```java
 List<Employee> empList=new ArrayList<Employee>();
 empList.add(new Employee(1,"Marco","marco@gmail.com",25000));
@@ -91,14 +91,14 @@ empList.add(new Employee(5,"Robin","robin@gmail.com",50000));
 empList.stream().filter(employee->employee.getSalary()>25000)
 .forEach(employee -> System.out.println(employee.getName()));
 ```
-## a) map() Method
+### a) map() Method
 ```java
 List<Integer> list = Arrays.asList(2,3,5,7,9);
 resultList= list.stream().map(n->n*n).collect(Collectors.toList();
 System.out.println(resultList);
 list.stream().map(n->n*n).forEach(System.out::println);
 ```
-## b) map() Method
+### b) map() Method
 ```java
 List<String> list = Arrays.asList("Marco","Daisy","Michael","Sanya","Robin");
 list.stream()
@@ -111,7 +111,7 @@ resultList= list.stream().map(name->name.toUpperCase())
 System.out.println(resultList);
 ```
 
-## C) map() Method
+### C) map() Method
 ```java
 List<Employee> empList=new ArrayList<Employee>();
 empList.add(new Employee(1,"Marco","marco@gmail.com",25000));
