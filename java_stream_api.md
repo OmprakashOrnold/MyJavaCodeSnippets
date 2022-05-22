@@ -219,3 +219,37 @@ empList.stream().sorted(Comparator.comparing(Employee::getSalary).reversed()) //
 empList.stream().sorted(Comparator.comparing(Employee::getDepartment).thenComparing(Employee::getName))
 .forEach(System.out::println);
 ```
+
+### 1) distinct() Method
+```java
+List<String> courseList= Arrays.asList("Java","Python","Ruby","Javascript","Java","Angular","React");
+
+courseList.stream().distinct().forEach(System.out::println);
+```
+### 2) limit() Method
+```java
+List<Integer> numList = new ArrayList<>();
+
+for (int i = 1; i <=20 ; i++) {
+        numList.add(i);
+}
+
+System.out.println(numList);
+
+List<Integer> resultList = numList.stream().limit(10)
+                         .collect(Collectors.toList());
+
+System.out.println(resultList);
+
+}
+```
+
+### 2) skip() Method
+```java
+List<Integer> numList = Arrays.asList(0,1,2,3,4,5,10,20,30,40,50);
+List<Integer> resultList = numList.stream().skip(5)
+                        .collect(Collectors.toList());
+
+System.out.println(resultList);
+```
+
